@@ -15,6 +15,7 @@ class ImageController extends Controller
     public function show()
     {
         // return all images 
+        return Image::latest()->pluck('name')->toArray();
     }
 
     public function store(Request $request)
@@ -45,6 +46,6 @@ class ImageController extends Controller
        ]);
 
         // retrun that image model back to the frontend
-        return $image;
+        return $image->name;
     }
 }
