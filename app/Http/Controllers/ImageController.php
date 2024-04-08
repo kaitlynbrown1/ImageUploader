@@ -20,13 +20,15 @@ class ImageController extends Controller
 
     public function store(Request $request)
     {
+        return response()->json(['error' => 'This is a test.'], 500);
+
         // validate the incoming file
         if (!$request->hasFile('image')) {
             return response()->json(['error' => 'There is no image present.'], 400);
         }
 
         $request->validate([
-            'image' => 'required|file|image'
+            'image' => 'required|file|image|mimes:jpg,jpeg,png'
         ]);
 
         // save the file in storage
